@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<!-- Connection Timeout value (MilliSec) to retrive data from URL -->
+	<entry key="CONNECTION_TIME_OUT">40000</entry>
+	
+	
+	<entry key="MAX_THREADS_PER_PAGE">10</entry>
+	
+	<!-- Configuration to indicate if PROXY configuration is requried  -->
+	 <entry key="DOWNLOAD_DIR_PATH">mail_download/</entry> 
+	
+	<!-- Configuration to indicate if PROXY configuration is requried  -->
+	<!-- <entry key="IS_PROXY_CONF_REQUIRED">N</entry> -->
+
+
+</properties>
