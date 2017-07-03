@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import com.pramathi.demo.webcrawler.service.BaseURLCrawlerServiceImpl;
 import com.pramathi.demo.webcrawler.service.CrawlerSerice;
 import com.pramathi.demo.webcrawler.service.persistence.FileSystemPersistenceServiceImpl;
+import static com.pramathi.demo.webcrawler.util.ConfigUtil.getConfigValue;
 
 /**
  * Entry point for the crawler application. Takes target URL and year as command
@@ -22,17 +23,20 @@ public class MainApp {
 
 	static long startTime;
 	private static final Logger logger = LogManager.getLogger(MainApp.class);
+	
+	
 	public static void main(String[] args) {
 
 		startTime = System.nanoTime();
-
-		if (args == null || args.length != 2) {
-			System.err.println("Invalid input!!! " + "\nExpected input::"
-					+ "\n \t java com.pramathi.demo.webcrawler.MainApp <URL> <Year>");
-		} else {
+		
+		// set log4j configuration
+		System.setProperty("log4j.configurationFile", "file:./log4j.xml");
+			
+			
+		
 			CrawlerSerice service = new BaseURLCrawlerServiceImpl();
 			try {
-				service.process(args[0], args[1]);
+				service.process(getConfigValue("MAIL_URL"),getConfigValue("TARGET_YEAR"));
 			} catch (IOException e) {
 				logger.error("IO Exception noticed..",e);
 			}
@@ -41,7 +45,7 @@ public class MainApp {
 			// count retrived in dirty and quick manner. Can be retrieved in better way.
 			System.out.println("\nTotal mails downloaded   :: " + FileSystemPersistenceServiceImpl.getSavedMailCount());
 			
-		}
+		
 	}
 
 	/**

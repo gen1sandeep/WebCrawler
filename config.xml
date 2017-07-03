@@ -2,10 +2,16 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	
+	<!-- configure the URL to be crawled -->
+	<entry key="MAIL_URL"><![CDATA[http://mail-archives.apache.org/mod_mbox/maven-users/]]></entry>
+	
+	<!-- target year to download mails -->
+	<entry key="TARGET_YEAR">2016</entry>
+	
 	<!-- Connection Timeout value (MilliSec) to retrive data from URL -->
 	<entry key="CONNECTION_TIME_OUT">40000</entry>
 	
-	
+	<!-- parameter to indicate the fixed thread pool size, when downloading mails from given page -->
 	<entry key="MAX_THREADS_PER_PAGE">10</entry>
 	
 	<!-- Configuration to indicate if PROXY configuration is requried  -->
