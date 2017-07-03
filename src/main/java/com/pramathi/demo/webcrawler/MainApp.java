@@ -13,43 +13,34 @@ import com.pramathi.demo.webcrawler.service.persistence.FileSystemPersistenceSer
 import static com.pramathi.demo.webcrawler.util.ConfigUtil.getConfigValue;
 
 /**
- * Entry point for the crawler application. Takes target URL and year as command
- * line inputs. e.g. 
- * java com.pramathi.demo.webcrawler.MainApp http://mail-archives.apache.org/mod_mbox/maven-users 2015
- * 
+ * Entry point for the crawler application. Takes target URL and year from config file. 
  * @author Sandeep_Alla
  */
 public class MainApp {
 
 	static long startTime;
 	private static final Logger logger = LogManager.getLogger(MainApp.class);
-	
-	
+
 	public static void main(String[] args) {
 
 		startTime = System.nanoTime();
-		
-		// set log4j configuration
-		System.setProperty("log4j.configurationFile", "file:./log4j.xml");
-			
-			
-		
-			CrawlerSerice service = new BaseURLCrawlerServiceImpl();
-			try {
-				service.process(getConfigValue("MAIL_URL"),getConfigValue("TARGET_YEAR"));
-			} catch (IOException e) {
-				logger.error("IO Exception noticed..",e);
-			}
 
-			System.out.println("\nTotal Processing time    :: " + getProcessingTime());
-			// count retrived in dirty and quick manner. Can be retrieved in better way.
-			System.out.println("\nTotal mails downloaded   :: " + FileSystemPersistenceServiceImpl.getSavedMailCount());
-			
-		
+		CrawlerSerice service = new BaseURLCrawlerServiceImpl();
+		try {
+			service.process(getConfigValue("MAIL_URL"), getConfigValue("TARGET_YEAR"));
+		} catch (IOException e) {
+			logger.error("IO Exception noticed..", e);
+		}
+
+		System.out.println("\nTotal Processing time    :: " + getProcessingTime());
+		// count retrived in dirty and quick manner.
+		System.out.println("\nTotal mails downloaded   :: " + FileSystemPersistenceServiceImpl.getSavedMailCount());
+
 	}
 
 	/**
 	 * return the process time as formated string
+	 * 
 	 * @return formateedProcessingTime
 	 */
 	private static String getProcessingTime() {

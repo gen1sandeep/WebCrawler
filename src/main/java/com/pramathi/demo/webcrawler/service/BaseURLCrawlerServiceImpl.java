@@ -76,7 +76,7 @@ public class BaseURLCrawlerServiceImpl implements CrawlerSerice{
 		Elements monthWiseLinks;
 
 		// notify progress on console
-		System.out.println("connecting to url :: " + url);
+		System.out.println("\n\nconnecting to url :: " + url);
 
 		Document doc = JsoupUtil.createDocumentFromURL(url);
 		if (doc != null) {
@@ -87,7 +87,7 @@ public class BaseURLCrawlerServiceImpl implements CrawlerSerice{
 			// text "Date"
 			monthWiseLinks = doc.select("table.year:contains(Year " + year + ")").select("a[href]:contains(Date)");
 
-			System.out.println("Year [" + year + "], has mails available for [" + monthWiseLinks.size() + "] months");
+			System.out.println("\nTarger Year  ::  [" + year + "],  Mails Available for  ::  [" + monthWiseLinks.size() + "] months");
 			return monthWiseLinks;
 		} else {
 			return null;
